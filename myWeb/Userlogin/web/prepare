@@ -1,0 +1,13 @@
+1、创建数据库
+    create database Test01;
+    drop table if exists User;
+    create table User
+    (
+        userId int primary key auto_increment,
+        name nvarchar(10) ,
+        password nvarchar(20) ,
+        sex char(1) not null,
+        email varchar(50)
+    );
+
+ 2、创建HTML页面

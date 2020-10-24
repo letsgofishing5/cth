@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <center>
+        <font style="color:red;font-size: 30px;">用户点餐</font>
+        <form action="/myWeb/two" method="get">
+            <label for="rich">
+                <input type="radio" name="food" value="rich" id="rich" checked="checked"/>盖饭（10元）
+            </label>
+            <label for="noodles">
+            <input type="radio" name="food" value="noodles" id="noodles"/>面条（20元）
+            </label>
+            <label for="jiaozi">
+            <input type="radio" name="food" value="jiaozi" id="jiaozi"/>饺子（30元）
+            </label>
+            <br/>
+            <input type="submit" value="提交订单"/>
+        </form>
+
+    </center>
+</body>
+</html>

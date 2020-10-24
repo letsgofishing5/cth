@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <center>
+        <form action="/myWeb/userRegister" method=""get>
+            <table border="1" >
+                <tr>
+                    <td>用户：</td>
+                    <td >
+                        <input type="text" name="name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>密码：</td>
+                    <td>
+                        <input type="password" name="password"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>性别：</td>
+                    <td>
+                        <label for="man">
+                            <input type="radio" name="sex" value="1" checked="checked" id="man"/>男
+                        </label>
+                        <label for="female">
+                            <input type="radio" name="sex" value="0" id="female"/>女
+                        </label>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>邮箱：</td>
+                    <td>
+                        <input type="text" name="email"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" />
+                    </td>
+                    <td>
+                        <input type="reset" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </center>
+
+</body>
+</html>

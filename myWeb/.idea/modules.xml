@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Cookie_订餐/Cookie_订餐.iml" filepath="$PROJECT_DIR$/Cookie_订餐/Cookie_订餐.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Userlogin/Userlogin.iml" filepath="$PROJECT_DIR$/Userlogin/Userlogin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/在线考试系统/在线考试系统.iml" filepath="$PROJECT_DIR$/在线考试系统/在线考试系统.iml" />
+      <module fileurl="file://$PROJECT_DIR$/购物车/购物车.iml" filepath="$PROJECT_DIR$/购物车/购物车.iml" />
+    </modules>
+  </component>
+</project>

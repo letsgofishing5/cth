@@ -1,0 +1,82 @@
+静态资源文件：
+    图片，视频，HTML，CSS，JS
+动态资源文件：
+   1）
+        一个实现了servlet接口的java类才是动态资源文件，才可以被Tomcat调用，Tomcat才可以new出对象，实现功能
+        public class one extends HttpServlet{
+
+        }
+        HttpServlet(抽象类) extends GenericServlet(抽象类)
+        GenericServlet implements Servlet
+
+    2）
+        Servlet接口实现类实例对象只能有Http服务器创建，默认情况下Http服务器收到相对于当前Servlet接口实现类第一次请求时自动
+        创建这个Servlet接口实现类的实例对象
+
+    3）Http服务器运行期间，一个Servlet接口实现类只能被创建出一个实例对象，Http服务器关闭时，自动将网站中所有的Servlet对象进
+        行销毁
+
+响应对象：
+    HttpServletResponse
+请求对象
+    HttpServletRequest
+
+    响应对象与请求对象在浏览器向服务器发送请求协议包时，会生成两个对象。
+    响应对象与请求对象生命周期贯穿一次请求处理过程中
+
+    1）
+        获取资源文件的精准定位：请求行中并没有URI这个属性，实际上URL中截取一个字符串，这个字符串格式："网站名/资源文件名"
+        URI用于让Http服务器对呗访问的资源文件进行定位
+
+Servlet之间调用规则
+    1）重定向：
+        原理：用户通过一次手动方式通知浏览器访问OneServlet，OneServlet工作完成后，将TwoServlet地址写入到响应头location
+            属性中，导致Tomcat服务器将302状态码写入到状态行中
+            浏览器接收到响应协议包时，读取到302状态码，此时浏览器会自动根据响应头中的location中的地址发起第二次请求，访问
+            TwoServlet去完成这个请求中剩余任务
+
+        实现命令：
+            respons.sentRedirect("请求地址")
+
+        特征：
+             1-既可以把网站内部资源文件地址发送给浏览器，也可以把其他网站资源文件地址发送给浏览器
+             2-浏览器至少完成两次请求发送
+             3-重定向解决方案调用的资源文件接收的请求方式一定是【GET】
+
+    2）请求转发
+        原理：
+             用户第一次通过浏览器要求访问OneServlet，OneServlet工作完毕后，通过当前的请求对象代替浏览器向Tomcat服务器发送请求，
+             申请调用TwoServlet。Tomcat在接收到这个请求之后，自动调用TwoServlet来完成剩余的任务
+
+        实现命令：
+             RequestDispatcher report = request.getRequestDispatcher("/资源文件名");一定要以"/"开头，********不用写网站名**********
+             report.forward(当前请求对象，当前响应对象);
+
+        优点：
+             1-不管本次请求涉及到多少个Servlet，用户只需要通过浏览器手动发送一次请求
+             2-Servlet之间调用发生在服务器计算机上，节省浏览器与服务器之间的往返次数增加了处理服务器服务速度
+
+        特征：
+             1-浏览器只发送一次请求
+             2-浏览器只发送一个请求协议包，参与本次请求中的所有Servlet共享一个请求协议包，因此，这些Servlet接收请求时的请求方式与浏览器发送的
+                请求方式保持一致
+
+
+Servlet之间数据共享
+    数据共享四种方案：
+        ServletContext：接口(全局作用域对象)
+            在Http服务器启动时，自动为当前网站在内存中创建一个全局作用域对象
+
+            生命周期：贯穿网站整个运行期间
+            实现命令：
+                 //通过【请求对象】向Tomcat索要当前网站中【全局作用域对象】
+                ServletContext application = request.getServletContext();
+                //将数据添加到全局作用域对象中
+                application.setAttribute(String ,Object);
+                //通过全局作用域对象，得到指定key所对应的value值
+                application.getAttribute(String);
+
+        Cookie：工具类
+                        
+        HttpSession：接口(会话作用域对象)
+        HttpServletRequest:接口(请求作用域对象)
